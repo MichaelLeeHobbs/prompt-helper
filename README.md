@@ -1,6 +1,6 @@
 # Prompt-Helper
 
-Prompt-Helper is a command-line tool designed to streamline the process of generating prompts based on your project's files and configuration settings. It automatically scans your project directory, extracts relevant metadata, and generates meaningful prompts to assist in tasks like generating documentation, summaries, or code comments.
+Prompt-Helper is a command-line tool for **JavaScript** and **TypeScript** projects designed to streamline the process of generating prompts based on your project's files and configuration settings. It automatically scans your project directory, extracts relevant metadata, and generates meaningful prompts to assist in tasks like generating documentation, summaries, or code comments.
 
 ## Features
 
@@ -145,6 +145,7 @@ prompt-helper/
 - Test with full coverage.
 - Add support for more file types and configurations.
 - Add support including/excluding specific files, directories, or configurations.
+- I am sure there are a lot of other common tools that I am not aware of, so I would like to hear from you about what you would like to see in this tool.
 
 ## Development
 
