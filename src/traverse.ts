@@ -2,9 +2,9 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectInfo } from './types';
-import { getLocalDependencies } from './dependencies';
-import { hasCorrectHeader, addHeader } from './headers';
+import {ProjectInfo} from './types';
+import {getLocalDependencies} from './dependencies';
+import {addHeader, hasCorrectHeader} from './headers';
 
 /*
   Explain: This module focuses solely on walking directories, handling allowed directories,

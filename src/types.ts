@@ -25,5 +25,6 @@ export interface Tsconfig {
     exclude?: string[];
     files?: string[];
     references?: { path: string }[];
+
     [key: string]: unknown;
 }

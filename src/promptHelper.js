@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as ts from 'typescript'; // For TypeScript and JavaScript dependency parsing
 
 // Define the file extensions to check
-const CHECK_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.css']);
+const CHECK_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.css', '.mjs']);
 
 // Define the directories to include during traversal
 const ALLOWED_DIRECTORIES = new Set(['public', 'src']);

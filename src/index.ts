@@ -1,10 +1,10 @@
 // src/index.ts
 import * as fs from 'fs';
 import * as path from 'path';
-import { createLogger } from './logger';
-import { ProjectInfo } from './types';
-import { collectProjectInfo, logProjectInfo, appendPromptInstructions } from './projectInfo';
-import { traverseDirectory } from './traverse';
+import {createLogger} from './logger';
+import {ProjectInfo} from './types';
+import {appendPromptInstructions, collectProjectInfo, logProjectInfo} from './projectInfo';
+import {traverseDirectory} from './traverse';
 
 /*
   Explain: index.ts is the entry point where all other modules are orchestrated.

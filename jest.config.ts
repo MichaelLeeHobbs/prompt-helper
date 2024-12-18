@@ -1,9 +1,11 @@
+// ./jest.config.ts
 /**
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+// @ts-expect-error TS2306 - occurs because @types/jest provides global types but not a named Config
+import type {Config} from '@jest/types';
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically

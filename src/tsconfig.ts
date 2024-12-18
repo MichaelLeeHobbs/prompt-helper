@@ -2,7 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { Tsconfig } from './types';
+import {Tsconfig} from './types';
 
 /*
   Explain: We separate tsconfig handling into its own file to keep the logic for
@@ -26,7 +26,7 @@ export function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new S
         return {};
     }
 
-    let mergedConfig: Tsconfig = { ...tsconfig };
+    let mergedConfig: Tsconfig = {...tsconfig};
 
     // If extends is used, merge parent tsconfig
     if (tsconfig.extends) {

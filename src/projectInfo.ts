@@ -2,8 +2,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectInfo } from './types';
-import { collectTsconfigInfo } from './tsconfig';
+import {ProjectInfo} from './types';
+import {collectTsconfigInfo} from './tsconfig';
 
 /*
   Explain: Gathering project info is a distinct concern—extracting details from package.json, lock files,
