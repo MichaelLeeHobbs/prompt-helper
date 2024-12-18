@@ -10,19 +10,21 @@ import * as ts from 'typescript';
 */
 
 export function getLocalDependencies(filePath: string, baseDir: string): string[] {
-    const dependencies: string[] = [];
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const sourceFile = ts.createSourceFile(filePath, fileContent, ts.ScriptTarget.Latest, true);
+  const dependencies: string[] = [];
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  const sourceFile = ts.createSourceFile(filePath, fileContent, ts.ScriptTarget.Latest, true);
 
-    ts.forEachChild(sourceFile, (node) => {
-        if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
-            const importPath = node.moduleSpecifier.text;
-            if (!importPath.startsWith('.')) return; // Skip library imports
-            const resolvedPath = path.resolve(path.dirname(filePath), importPath);
-            const relativePath = path.relative(baseDir, resolvedPath).replace(/\\/g, '/');
-            dependencies.push(relativePath);
-        }
-    });
+  ts.forEachChild(sourceFile, node => {
+    if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+      const importPath = node.moduleSpecifier.text;
+      if (!importPath.startsWith('.')) {
+        return;
+      } // Skip library imports
+      const resolvedPath = path.resolve(path.dirname(filePath), importPath);
+      const relativePath = path.relative(baseDir, resolvedPath).replace(/\\/g, '/');
+      dependencies.push(relativePath);
+    }
+  });
 
-    return dependencies;
+  return dependencies;
 }

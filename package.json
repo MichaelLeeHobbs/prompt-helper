@@ -1,6 +1,6 @@
 {
   "name": "prompt-helper",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "build": "tsc",
     "start": "tsc && node dist/src/index.js",
     "lint": "eslint src/**/*.ts",
-    "lint-fix": "pnpm eslint --fix"
+    "lint-fix": "pnpm eslint --fix src/**/*.ts"
   },
   "keywords": [],
   "author": "",

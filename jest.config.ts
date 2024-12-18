@@ -5,7 +5,7 @@
  */
 
 // @ts-expect-error TS2306 - occurs because @types/jest provides global types but not a named Config
-import type {Config} from '@jest/types';
+import type { Config } from '@jest/types';
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -27,7 +27,7 @@ const config: Config = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -35,7 +35,7 @@ const config: Config = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
