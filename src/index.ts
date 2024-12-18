@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // src/index.ts
 import * as fs from 'fs';
 import * as path from 'path';

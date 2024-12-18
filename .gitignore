@@ -131,3 +131,4 @@ dist
 
 # WebStorm project files
 .idea
+/promptHelper.txt

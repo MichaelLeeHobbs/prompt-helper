@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "prompt-helper": "dist/prompt-helper.js"
+    "prompt-helper": "dist/src/index.js"
   },
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "start": "node dist/prompt-helper.js",
-    "eslint": "eslint src/**/*.ts",
-    "eslint:fix": "pnpm eslint --fix"
+    "start": "tsc && node dist/src/index.js",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "pnpm eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +29,10 @@
     "globals": "^15.13.0",
     "prettier": "^3.4.2",
     "typescript-eslint": "^8.18.1"
-  }
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ]
 }

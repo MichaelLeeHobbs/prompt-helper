@@ -59,7 +59,7 @@ export function traverseDirectory(
                 traverseDirectory(absolutePath, baseDir, newPrefix, log, projectInfo);
             }
         } else if (stats.isFile()) {
-            if (dir === baseDir && (item === 'promptHelper.js' || item === 'promptHelper.txt')) {
+            if (dir === baseDir && item.startsWith('promptHelper')) {
                 // Skip these files
                 return;
             }

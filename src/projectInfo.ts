@@ -44,23 +44,26 @@ export function collectProjectInfo(baseDir: string, projectInfo: ProjectInfo): v
     }
 
     // ESLint
-    const eslintConfigs = ['.eslintrc.js', '.eslintrc.json', '.eslintrc', 'eslint.config.js'];
+    const eslintConfigs = ['.eslintrc.js', '.eslintrc.json', '.eslintrc', 'eslint.config.js', 'eslint.config.mjs'];
     projectInfo.usesESLint = eslintConfigs.some(cfg => fs.existsSync(path.join(baseDir, cfg)));
 
     // Webpack
-    projectInfo.usesWebpack = fs.existsSync(path.join(baseDir, 'webpack.config.js'));
+    const webpackConfigs = ['webpack.config.js', 'webpack.config.ts'];
+    projectInfo.usesWebpack = webpackConfigs.some(cfg => fs.existsSync(path.join(baseDir, cfg)));
 
     // Vite
     projectInfo.usesVite = fs.existsSync(path.join(baseDir, 'vite.config.js')) || fs.existsSync(path.join(baseDir, 'vite.config.ts'));
 
     // Babel
-    projectInfo.usesBabel = fs.existsSync(path.join(baseDir, 'babel.config.js')) || fs.existsSync(path.join(baseDir, '.babelrc'));
+    const babelConfigs = ['.babelrc', 'babel.config.js'];
+    projectInfo.usesBabel = babelConfigs.some(cfg => fs.existsSync(path.join(baseDir, cfg)));
 
     // Jest
-    projectInfo.usesJest = fs.existsSync(path.join(baseDir, 'jest.config.js'));
+    const jestConfigs = ['jest.config.js', 'jest.config.json', 'jest.config.ts'];
+    projectInfo.usesJest = jestConfigs.some(cfg => fs.existsSync(path.join(baseDir, cfg)));
 
-    // Docker
-    projectInfo.usesDocker = fs.existsSync(path.join(baseDir, 'Dockerfile'));
+    // Docker - if some file starts with Dockerfile
+    projectInfo.usesDocker = fs.readdirSync(baseDir).some(file => file.toLowerCase().startsWith('dockerfile'));
 }
 
 
