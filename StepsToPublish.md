@@ -73,7 +73,11 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
   ```
 
 - Create a Git tag and push changes:
+  ```bash
+  git tag vX.Y.Z
+  ```
 
+- Push the changes and tags:
   ```bash
   git add .
   git commit -m "Release version x.y.z"

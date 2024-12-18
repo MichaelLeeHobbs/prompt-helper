@@ -12,16 +12,64 @@ Prompt-Helper is a command-line tool designed to streamline the process of gener
 
 ## Installation
 
-To install globally using [pnpm](https://pnpm.io):
+### Using [npm](https://www.npmjs.com/)
+
+To install globally:
+
+```bash
+npm install -g prompt-helper
+```
+
+To install locally:
+
+```bash
+npm install prompt-helper
+```
+
+If installed locally, run using:
+
+```bash
+npx prompt-helper
+```
+
+### Using [Yarn](https://yarnpkg.com/)
+
+To install globally:
+
+```bash
+yarn global add prompt-helper
+```
+
+To install locally:
+
+```bash
+yarn add prompt-helper
+```
+
+If installed locally, run using:
+
+```bash
+yarn prompt-helper
+```
+
+### Using [pnpm](https://pnpm.io)
+
+To install globally:
 
 ```bash
 pnpm add -g prompt-helper
 ```
 
-Alternatively, you can install locally:
+To install locally:
 
 ```bash
 pnpm add prompt-helper
+```
+
+If installed locally, run using:
+
+```bash
+pnpm prompt-helper
 ```
 
 ## Usage
@@ -91,17 +139,12 @@ prompt-helper/
 
 ## Other Notes
 - This is an example of a markdown file that can be used to provide additional information.
-
-
-
-## Code:
-[Include code snippets or references]
-
-Instructions:
-- Provide a summary of any issues found.
-- Suggest improvements with code examples if possible.
-
 ```
+
+## Planned Features
+- Test with full coverage.
+- Add support for more file types and configurations.
+- Add support including/excluding specific files, directories, or configurations.
 
 ## Development
 
@@ -146,6 +189,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Inspired by common project management tools.
 - Built with TypeScript, Node.js, and modern best practices.
 - ChatGPT for the idea and initial implementation.
-
-
-
