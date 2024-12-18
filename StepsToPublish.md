@@ -60,7 +60,7 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
    Check the npm registry:
 
    ```bash
-   npm view <your-package-name>
+   npm view prompt-helper
    ```
 
 ## Post-Publish Checklist
@@ -69,7 +69,7 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
 - Install the package locally or globally to test:
 
   ```bash
-  npm install -g <your-package-name>
+  npm install -g prompt-helper
   ```
 
 - Create a Git tag and push changes:
