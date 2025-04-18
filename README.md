@@ -25,6 +25,12 @@ assist in tasks like generating documentation, summaries, or code comments.
 - **Custom Code Snippets:** Include specific code files or entire directories
   via `--code` flags.
 - **Style Injection:** Embed a `style.md` section to enforce code conventions.
+- **TODO/FIXME Scanning:** Extract inline comments marked for follow-up.
+- **Code Complexity Metrics:** Adds FTA-based stats like cyclomatic complexity,
+  bugs, and effort.
+- **Dependency Graph Output:** Include a `dependencyGraph` section and track
+  unused files.
+- **JSON Output:** Emit a machine-readable JSON alongside the markdown summary.
 - **Customizable Logs:** Outputs logs to both console and file.
 
 ## Installation
@@ -55,14 +61,18 @@ pnpm prompt-helper         # pnpm
 
 ## Commands
 
-| Command                                | Description                                                                            |
-|----------------------------------------|----------------------------------------------------------------------------------------|
-| `prompt-helper`                        | Scan current directory and generate `promptHelper.md`.                                 |
-| `prompt-helper -d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).            |
-| `prompt-helper -o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                               |
-| `prompt-helper -s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                           |
-| `prompt-helper -c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. |
-| `prompt-helper --help`                 | Display help and all available options.                                                |
+| Command                  | Description                                                                            |
+|--------------------------|----------------------------------------------------------------------------------------|
+| `prompt-helper`          | Scan current directory and generate `promptHelper.md`.                                 |
+| `-d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).            |
+| `-o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                               |
+| `-s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                           |
+| `-c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. |
+| `--todos`                | Scan codebase for `TODO:` and `FIXME:` comments.                                       |
+| `--complexity`           | Analyze complexity metrics (Halstead, cyclomatic, bugs, time, effort).                 |
+| `--dependency-graph`     | Collect and output the full dependency graph and unused file list.                     |
+| `--json`                 | Also write a `promptHelper.json` alongside the markdown summary.                       |
+| `--help`                 | Display help and all available options.                                                |
 
 ## Example Usage
 
@@ -76,66 +86,21 @@ prompt-helper --dir ./my-app --out custom.md
 # Inject style guide
 prompt-helper --style ./promptHelper/style.md
 
-# Include two code snippets
-prompt-helper --code src/projectInfoCollector.ts --code src/utils/
+# Include code snippets
+prompt-helper --code src/entry.ts --code src/utils/
+
+# Include TODO comments and complexity analysis
+prompt-helper --todos --complexity
+
+# Include full dependency graph and export as JSON
+prompt-helper --dependency-graph --json
 ```
 
 ## Example Output
 
-```markdown
-# Project: prompt-helper
-
-## Directory Structure:
-
-prompt-helper/
-├── jest.config.ts
-└── src/
-├── features/
-│ ├── fileStructure/
-│ └── projectInfo/
-...and so on
-
-## Package.json info:
-
-### Type: Not specified
-
-### Dependencies:
-
-commander: ^13.1.0
-jsonc-parser: ^3.3.1
-typescript: ^5.7.2
-
-### DevDependencies:
-
-@eslint/js: ^9.17.0
-@types/jest: ^29.5.14
-...and so on
-
-## Style:
-
-...style.md content...
-
-## Code:
-
-### src/index.ts
-
-   ```ts
-   // code here
-   \```
-
-### src/utils/helper.ts
-   ```ts
-   // code here
-   \```
+See [`example.md`](example.md) for a sample output.
 
 ---
-
-## Instructions:
-- Please give the full updated code for any files that were changed in a Markdown code block.
-- If you need additional context, code, or information, please ask before proceeding.
-- Provide a summary of any issues found.
-- Suggest improvements with code examples if possible.
-```
 
 ## Changes
 
@@ -153,6 +118,12 @@ typescript: ^5.7.2
   modules.
 - Recursive directory support for `--code`; improved error handling for
   ambiguous paths.
+- 🚀 Added support for:
+    - `--todos` and `--complexity` metrics
+    - `--dependency-graph` collection and unused file detection
+    - `--json` output for machine-friendly workflows
+
+---
 
 ## Planned Features
 
@@ -161,27 +132,35 @@ typescript: ^5.7.2
 - Include/exclude globs for fine‑grained control.
 - Plugin system for custom metadata collectors.
 
+---
+
 ## Development
 
 1. Clone the repo:
+
     ```bash
     git clone https://github.com/yourusername/prompt-helper.git
     ```
 
 2. Install dependencies:
+
     ```bash
     pnpm install
     ```
 
 3. Build:
+
     ```bash
     pnpm run build
     ```
 
 4. Run locally:
+
     ```bash
     pnpm start
     ```
+
+---
 
 ## Contributing
 
@@ -191,15 +170,17 @@ Contributions are welcome! Please:
 2. Create a branch for your feature or bugfix.
 3. Send a pull request.
 
+---
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for
 details.
+
+---
 
 ## Acknowledgments
 
 - Inspired by common project analysis tools.
 - Built with TypeScript, Node.js, and modern best practices.
 - This was Vibecoded with ChatGPT.
-
-

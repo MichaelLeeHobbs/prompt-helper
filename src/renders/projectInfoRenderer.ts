@@ -17,20 +17,20 @@ export function renderProjectInfo(projectInfo: ProjectInfo, log: (msg: string, e
     const deps = projectInfo.packageJson.dependencies || {};
     if (Object.keys(deps).length) {
       for (const [dep, ver] of Object.entries(deps)) {
-        log(`  ${dep}: ${ver}`);
+        log(`- ${dep}: ${ver}`);
       }
     } else {
-      log('  None');
+      log('- None');
     }
 
     log('### DevDependencies:');
     const devDeps = projectInfo.packageJson.devDependencies || {};
     if (Object.keys(devDeps).length) {
       for (const [dep, ver] of Object.entries(devDeps)) {
-        log(`  ${dep}: ${ver}`);
+        log(`- ${dep}: ${ver}`);
       }
     } else {
-      log('  None');
+      log('- None');
     }
   } else {
     log('\n## No package.json found.');
@@ -43,7 +43,7 @@ export function renderProjectInfo(projectInfo: ProjectInfo, log: (msg: string, e
     if (projectInfo.tsconfigJson.compilerOptions) {
       log('### CompilerOptions:');
       for (const [key, value] of Object.entries(projectInfo.tsconfigJson.compilerOptions)) {
-        log(`  ${key}: ${JSON.stringify(value)}`);
+        log(`- ${key}: ${JSON.stringify(value)}`);
       }
     }
 
@@ -51,9 +51,9 @@ export function renderProjectInfo(projectInfo: ProjectInfo, log: (msg: string, e
     for (const key of keysToShow) {
       const value = (projectInfo.tsconfigJson as any)[key];
       if (Array.isArray(value)) {
-        log(`### ${key.charAt(0).toUpperCase() + key.slice(1)}:`);
+        log(`### TSConfig ${key.charAt(0).toUpperCase() + key.slice(1)}:`);
         value.forEach(item => {
-          log(`  ${typeof item === 'object' ? JSON.stringify(item) : item}`);
+          log(`- ${typeof item === 'object' ? JSON.stringify(item) : item}`);
         });
       }
     }

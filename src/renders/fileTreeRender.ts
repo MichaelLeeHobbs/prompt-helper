@@ -34,6 +34,8 @@ function renderFileTreeHelper(nodes: FileNode[], log: (message: string, isError?
 export function fileTreeRender(projectInfo: ProjectInfo): void {
   const { tree: nodes, logger: log } = projectInfo;
   log('\n## Directory Structure:\n');
+  log('```markdown');
   log(`${path.basename(projectInfo.baseDir)}/`);
   renderFileTreeHelper(nodes, log, '');
+  log('```');
 }

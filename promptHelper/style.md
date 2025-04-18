@@ -1,3 +1,4 @@
+> projectRoot/promptHelper/style.md
 1. Line Length - **Maximum** 160 characters per line.
 2. Function Signatures & Calls
     - **Single‑line** signatures unless the entire declaration exceeds 160
