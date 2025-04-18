@@ -1,3 +1,4 @@
+// src/modules/headers.ts
 // src/headers.ts
 
 import * as fs from 'fs';

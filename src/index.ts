@@ -5,7 +5,7 @@ import * as path from 'path';
 import { createLogger } from './logger';
 import { ProjectInfo } from './types';
 import { appendPromptInstructions, collectProjectInfo, logProjectInfo } from './projectInfo';
-import { traverseDirectory } from './traverse';
+import { traverseDirectory } from './modules/traverse';
 
 /*
   Explain: index.ts is the entry point where all other modules are orchestrated.
@@ -20,7 +20,7 @@ function main() {
     process.exit(1);
   }
 
-  const logFilePath = path.join(baseDir, 'promptHelper.txt');
+  const logFilePath = path.join(baseDir, 'promptHelper.md');
   const log = createLogger(logFilePath);
 
   const projectInfo: ProjectInfo = {};

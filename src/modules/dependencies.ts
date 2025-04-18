@@ -1,3 +1,4 @@
+// src/modules/dependencies.ts
 // src/dependencies.ts
 
 import * as fs from 'fs';

@@ -16,6 +16,10 @@ export interface ProjectInfo {
   usesBabel?: boolean;
   usesJest?: boolean;
   usesDocker?: boolean;
+  usesGitHubActions?: boolean;
+  usesTravis?: boolean;
+  usesCircleCI?: boolean;
+  usesJenkins?: boolean;
 }
 
 export interface Tsconfig {
@@ -27,4 +31,14 @@ export interface Tsconfig {
   references?: { path: string }[];
 
   [key: string]: unknown;
+}
+
+export interface FileNode {
+  name: string;
+  path: string;
+  isDirectory: boolean;
+  children?: FileNode[];
+  dependencies?: string[];
+  missingHeader?: boolean;
+  error?: string;
 }

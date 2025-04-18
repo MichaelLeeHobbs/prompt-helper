@@ -1,8 +1,9 @@
+// src/modules/tsconfig.ts
 // src/tsconfig.ts
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { Tsconfig } from './types';
+import { Tsconfig } from '../types';
 
 /*
   Explain: We separate tsconfig handling into its own file to keep the logic for
