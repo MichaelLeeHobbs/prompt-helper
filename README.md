@@ -92,53 +92,87 @@ npx prompt-helper
 
 ## Example Output
 
-```plaintext
+```markdown
 # Project: prompt-helper
 
 ## Directory Structure:
 
 prompt-helper/
 ├── jest.config.ts
-├── src/
-│   ├── dependencies.ts
-│   ├── headers.ts
-│   ├── index.ts
-│   │       (Depends on: src/logger, src/types, src/projectInfo, src/traverse)
-│   ├── logger.ts
-│   ├── projectInfo.ts
-│   │       (Depends on: src/types, src/tsconfig)
-│   ├── traverse.ts
-│   │       (Depends on: src/types, src/dependencies, src/headers)
-│   ├── tsconfig.ts
-│   │       (Depends on: src/types)
-│   └── types.ts
+└── src/
+    ├── features/
+    │   ├── fileStructure/
+    │   │   ├── collector.ts (Depends on: src/types, src/modules/dependencies, src/modules/headers)
+    │   │   ├── index.ts (Depends on: src/features/fileStructure/collector, src/features/fileStructure/renderer)
+    │   │   └── renderer.ts (Depends on: src/types)
+    │   └── projectInfo/
+    │       ├── collectors/
+    │       │   ├── codeCollector.ts (Depends on: src/types)
+    │       │   ├── notesCollector.ts (Depends on: src/types)
+    │       │   ├── packageJsonCollector.ts (Depends on: src/types)
+    │       │   ├── styleCollector.ts (Depends on: src/types)
+    │       │   ├── toolDetector.ts (Depends on: src/types)
+    │       │   └── tsconfigCollector.ts (Depends on: src/modules/tsconfig, src/types)
+    ...and so on
 
 ## Package.json info:
 ### Type: Not specified
 ### Dependencies:
+  commander: ^13.1.0
+  jsonc-parser: ^3.3.1
   typescript: ^5.7.2
 ### DevDependencies:
   @eslint/js: ^9.17.0
   @types/jest: ^29.5.14
-  @types/node: ^22.10.2
-  eslint: ^9.17.0
-  eslint-config-prettier: ^9.1.0
-  eslint-plugin-prettier: ^5.2.1
-  globals: ^15.13.0
-  prettier: ^3.4.2
-  typescript-eslint: ^8.18.1
+  ...and so on
 
-## tsconfig.json and referenced configs found.
+## tsconfig.json and referenced configs found:
+### CompilerOptions:
+  target: "ES2020"
+  module: "commonjs"
+  resolveJsonModule: true
+  ...and so on
 
 ## Project Info:
 - Package manager detected: pnpm
 - Project uses ESLint.
 - Project uses Jest.
 
-----------
+---
 
-## Other Notes (In the projects root directory: promptHelperOtherNotes.md)
-- This is an example of a markdown file that can be used to provide additional information in the generated promptHelper.txt file.
+## Style: (<root>/promptHelper/style.md)
+### 1. Line Length
+
+- **Maximum**: 160 characters per line.
+- If a statement (including imports, function signatures, etc.) would exceed 160 chars, you may break it onto multiple lines—otherwise keep it on one line.
+
+---
+
+### 2. Function Signatures & Calls
+
+- **Single‑line** signatures unless the entire declaration exceeds 160 chars.
+- **No extra indentation** for parameters on new lines—if you must wrap, align subsequent lines under the opening `(`.
+
+**Bad (always multi‑line):**
+...and so on
+
+---
+
+## Code:
+
+### src/features/fileStructure/collector.ts
+...code files in Markdown code blocks...
+
+---
+
+
+## Instructions:
+- Please give the full updated code for any files that were changed in a Markdown code block.
+- If you need additional context, code, or information, please ask before proceeding.
+- Provide a summary of any issues found.
+- Suggest improvements with code examples if possible.
+
+
 ```
 
 ## Planned Features
