@@ -16,9 +16,10 @@ program
   .version('1.0.0')
   .option('-d, --dir <path>', 'base directory to scan', process.cwd())
   .option('-o, --out <file>', 'output markdown filename', 'promptHelper.md')
+  .option('-s, --style <path>', 'path to style markdown file')
   .parse(process.argv);
 
-const options = program.opts<{ dir: string; out: string }>();
+const options = program.opts<{ dir: string; out: string; style?: string }>();
 const baseDir = path.resolve(options.dir);
 const logFilePath = path.join(baseDir, options.out);
 
@@ -32,7 +33,7 @@ function main() {
   const projectInfo: ProjectInfo = {};
 
   // Collect and render project info
-  collectProjectInfo(baseDir, projectInfo);
+  collectProjectInfo(baseDir, projectInfo, options.style)
 
   log(projectInfo.packageJson?.name ? `# Project: ${projectInfo.packageJson.name}` : '# Project Info:');
 
