@@ -10,6 +10,7 @@
     "test": "jest",
     "build": "tsc",
     "start": "tsc && node dist/src/index.js",
+    "dev": "ts-node src/index.ts",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "pnpm eslint --fix src/**/*.ts"
   },
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
     "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
     "typescript-eslint": "^8.18.1"
   },
   "files": [
