@@ -20,7 +20,8 @@ export interface ProjectInfo {
   usesTravis?: boolean;
   usesCircleCI?: boolean;
   usesJenkins?: boolean;
-  styleText?: string;  // content of style.md or --style file
+  styleText?: string;
+  codeSnippets?: { file: string; code: string }[];
 }
 
 export interface Tsconfig {
