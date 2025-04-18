@@ -1,5 +1,4 @@
 // src/modules/headers.ts
-// src/headers.ts
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -34,7 +33,7 @@ export function hasCorrectHeader(absolutePath: string, relativePath: string): bo
   }
 }
 
-export function addHeader(absolutePath: string, relativePath: string, log: (msg: string, err?: boolean, error?: unknown) => void): void {
+export function addHeader(absolutePath: string, relativePath: string): void {
   const expectedHeader = getExpectedHeader(relativePath);
   if (!expectedHeader) {
     return;
@@ -55,7 +54,7 @@ export function addHeader(absolutePath: string, relativePath: string, log: (msg:
 
     fs.writeFileSync(absolutePath, lines.join('\n'), 'utf8');
   } catch (err) {
-    log(`Error writing to file: ${absolutePath}`, true, err);
+    console.error(`Error writing to file: ${absolutePath}`, true, err);
   }
 }
 

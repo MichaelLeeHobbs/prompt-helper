@@ -1,5 +1,5 @@
-// src/projectInfo/instructions.ts
-import { ProjectInfo } from '../types';
+// src/features/projectInfo/instructions.ts
+import { ProjectInfo } from '../../types';
 
 export function appendPromptInstructions(
     log: (msg: string) => void,

@@ -1,8 +1,8 @@
 // src/modules/tsconfig.ts
-// src/tsconfig.ts
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { parse as parseJson } from 'jsonc-parser';
 import { Tsconfig } from '../types';
 
 /*
@@ -11,7 +11,10 @@ import { Tsconfig } from '../types';
   and maintenance if tsconfig logic evolves.
 */
 
-export function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new Set<string>()): Tsconfig {
+export function collectTsconfigInfo(
+    tsconfigPath: string,
+    visitedConfigs = new Set<string>()
+): Tsconfig {
   if (visitedConfigs.has(tsconfigPath)) {
     // Avoid circular references
     return {};
@@ -21,7 +24,8 @@ export function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new S
   let tsconfig: Tsconfig;
   try {
     const tsconfigData = fs.readFileSync(tsconfigPath, 'utf8');
-    tsconfig = JSON.parse(tsconfigData);
+    // jsonc-parser will strip comments and trailing commas
+    tsconfig = parseJson(tsconfigData) as Tsconfig;
   } catch (err) {
     console.error(`Error reading or parsing ${tsconfigPath}:`, err);
     return {};
@@ -39,7 +43,11 @@ export function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new S
   // If references are used, recursively collect referenced tsconfigs
   if (tsconfig.references && Array.isArray(tsconfig.references)) {
     for (const ref of tsconfig.references) {
-      const refPath = path.resolve(path.dirname(tsconfigPath), ref.path, 'tsconfig.json');
+      const refPath = path.resolve(
+          path.dirname(tsconfigPath),
+          ref.path,
+          'tsconfig.json'
+      );
       const refConfig = collectTsconfigInfo(refPath, visitedConfigs);
       mergedConfig = mergeTsconfigs(mergedConfig, refConfig);
     }
@@ -48,7 +56,10 @@ export function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new S
   return mergedConfig;
 }
 
-export function mergeTsconfigs(baseConfig: Tsconfig, overrideConfig: Tsconfig): Tsconfig {
+export function mergeTsconfigs(
+    baseConfig: Tsconfig,
+    overrideConfig: Tsconfig
+): Tsconfig {
   // Deep merge the two configs. This can be customized for conflict handling.
   return {
     ...baseConfig,

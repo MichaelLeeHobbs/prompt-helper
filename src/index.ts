@@ -1,40 +1,47 @@
 #!/usr/bin/env node
 // src/index.ts
+
 import * as fs from 'fs';
 import * as path from 'path';
+import { Command } from 'commander';
 import { createLogger } from './logger';
 import { ProjectInfo } from './types';
-import { appendPromptInstructions, collectProjectInfo, logProjectInfo } from './projectInfo';
-import { traverseDirectory } from './modules/traverse';
+import { appendPromptInstructions, collectProjectInfo, logProjectInfo } from './features/projectInfo';
+import { traverseDirectory } from './features/fileStructure';
 
-/*
-  Explain: index.ts is the entry point where all other modules are orchestrated.
-  It sets up the environment, creates the logger, gathers info, and runs the traversal logic.
-*/
+const program = new Command();
+program
+  .name('prompt-helper')
+  .description('Generate a promptHelper markdown summary of your project')
+  .version('1.0.0')
+  .option('-d, --dir <path>', 'base directory to scan', process.cwd())
+  .option('-o, --out <file>', 'output markdown filename', 'promptHelper.md')
+  .parse(process.argv);
+
+const options = program.opts<{ dir: string; out: string }>();
+const baseDir = path.resolve(options.dir);
+const logFilePath = path.join(baseDir, options.out);
 
 function main() {
-  const baseDir = process.cwd();
-
   if (!fs.existsSync(baseDir) || !fs.statSync(baseDir).isDirectory()) {
-    console.error('Error: The current working directory is not valid.');
+    console.error(`Error: "${baseDir}" is not a valid directory.`);
     process.exit(1);
   }
 
-  const logFilePath = path.join(baseDir, 'promptHelper.md');
   const log = createLogger(logFilePath);
-
   const projectInfo: ProjectInfo = {};
+
+  // Collect and render project info
   collectProjectInfo(baseDir, projectInfo);
 
-  if (projectInfo.packageJson && projectInfo.packageJson.name) {
-    log(`# Project: ${projectInfo.packageJson.name}`);
-  } else {
-    log('# Project Info:');
-  }
+  log(projectInfo.packageJson?.name ? `# Project: ${projectInfo.packageJson.name}` : '# Project Info:');
 
+  // File tree
   log('\n## Directory Structure:\n');
   log(`${path.basename(baseDir)}/`);
-  traverseDirectory(baseDir, baseDir, '', log, projectInfo);
+  traverseDirectory(baseDir, log);
+
+  // Metadata & instructions
   logProjectInfo(projectInfo, log);
   appendPromptInstructions(log, projectInfo);
 }

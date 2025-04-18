@@ -1,7 +1,8 @@
+// src/features/projectInfo/collectors/toolDetector.ts
 // src/projectInfo/collectors/toolDetector.ts
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectInfo } from '../../types';
+import { ProjectInfo } from '../../../types';
 
 export function detectTools(baseDir: string, projectInfo: ProjectInfo): void {
     // package manager

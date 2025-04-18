@@ -1,7 +1,8 @@
+// src/features/projectInfo/collectors/packageJsonCollector.ts
 // src/projectInfo/collectors/packageJsonCollector.ts
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectInfo } from '../../types';
+import { ProjectInfo } from '../../../types';
 
 export function collectPackageJson(baseDir: string, projectInfo: ProjectInfo): void {
     const packageJsonPath = path.join(baseDir, 'package.json');
