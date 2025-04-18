@@ -55,14 +55,14 @@ pnpm prompt-helper         # pnpm
 
 ## Commands
 
-| Command                                | Description                                                                 |
-|----------------------------------------|-----------------------------------------------------------------------------|
-| `prompt-helper`                        | Scan current directory and generate `promptHelper.md`.                      |
-| `prompt-helper -d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory). |
-| `prompt-helper -o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                    |
-| `prompt-helper -s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                |
-| `prompt-helper -c, --code <file        | dir>`                                                                       | Include a specific code file or all files in a directory under a **## Code:** section.               |
-| `prompt-helper --help`                 | Display help and all available options.                                     |
+| Command                                | Description                                                                            |
+|----------------------------------------|----------------------------------------------------------------------------------------|
+| `prompt-helper`                        | Scan current directory and generate `promptHelper.md`.                                 |
+| `prompt-helper -d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).            |
+| `prompt-helper -o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                               |
+| `prompt-helper -s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                           |
+| `prompt-helper -c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. |
+| `prompt-helper --help`                 | Display help and all available options.                                                |
 
 ## Example Usage
 
@@ -77,7 +77,7 @@ prompt-helper --dir ./my-app --out custom.md
 prompt-helper --style ./promptHelper/style.md
 
 # Include two code snippets
-prompt-helper --code src/index.ts --code src/utils/
+prompt-helper --code src/projectInfoCollector.ts --code src/utils/
 ```
 
 ## Example Output
@@ -200,5 +200,6 @@ details.
 
 - Inspired by common project analysis tools.
 - Built with TypeScript, Node.js, and modern best practices.
-- Thanks to ChatGPT for initial design and guidance.
+- This was Vibecoded with ChatGPT.
+
 
