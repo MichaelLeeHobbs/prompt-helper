@@ -47,14 +47,22 @@ export function renderProjectInfo(projectInfo: ProjectInfo, log: (msg: string, e
       }
     }
 
-    const keysToShow = ['include', 'exclude', 'files', 'references'] as const;
-    for (const key of keysToShow) {
-      const value = (projectInfo.tsconfigJson as any)[key];
-      if (Array.isArray(value)) {
-        log(`### TSConfig ${key.charAt(0).toUpperCase() + key.slice(1)}:`);
-        value.forEach(item => {
+    const {include, exclude, files, references} = projectInfo.tsconfigJson;
+
+    // build a little table of [heading, value]
+    const arrProps: [string, unknown[] | undefined][] = [
+      ['Include', include],
+      ['Exclude', exclude],
+      ['Files', files],
+      ['References', references],
+    ];
+
+    for (const [heading, arr] of arrProps) {
+      if (Array.isArray(arr)) {
+        log(`### TSConfig ${heading}:`);
+        for (const item of arr) {
           log(`- ${typeof item === 'object' ? JSON.stringify(item) : item}`);
-        });
+        }
       }
     }
   } else {

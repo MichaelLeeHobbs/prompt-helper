@@ -11,15 +11,15 @@ const metricsHeader = (longestAssessment: number, longestFileName: number): stri
   const fileHeader = padMiddle('File Name', longestFileName + 2);
 
   const bands = [
-    { label: '> 60', description: 'Needs Improvement - Difficult to maintain' },
-    { label: '50 - 60', description: 'Could be better - Reasonably maintainable' },
-    { label: '40 - 50', description: 'Good - Maintainable' },
-    { label: '< 40', description: 'Very Good - Easy to maintain' },
+    {label: '> 60', description: 'Needs Improvement - Difficult to maintain'},
+    {label: '50 - 60', description: 'Could be better - Reasonably maintainable'},
+    {label: '40 - 50', description: 'Good - Maintainable'},
+    {label: '< 40', description: 'Very Good - Easy to maintain'},
   ];
 
-  const bandRows = bands.map(({ label, description }) => `|${padMiddle(label, 11)}| ${description.padEnd(41, ' ')} |`).join('\n');
+    const bandRows = bands.map(({label, description}) => `|${padMiddle(label, 11)}| ${description.padEnd(41, ' ')} |`).join('\n');
 
-  return `## FTA Complexity & Metrics:
+    return `## FTA Complexity & Metrics:
 
 | FTA Score |${padMiddle('Assessment', 43)}|
 |-----------|-------------------------------------------|
@@ -49,18 +49,27 @@ export function metricsRender(projectInfo: ProjectInfo): string {
     return '';
   }
 
-  const longestAssessment = projectInfo.metrics.reduce((max, { assessment }) => Math.max(max, assessment.length), 'Assessment'.length);
+  const longestAssessment = projectInfo.metrics.reduce((max, {assessment}) => Math.max(max, assessment.length), 'Assessment'.length);
 
-  const longestFileName = projectInfo.metrics.reduce((max, { file_name }) => Math.max(max, file_name.length), 'File Name'.length);
+  const longestFileName = projectInfo.metrics.reduce((max, {file_name}) => Math.max(max, file_name.length), 'File Name'.length);
 
   const header = metricsHeader(longestAssessment, longestFileName);
 
   const rows = projectInfo.metrics
     .sort((a, b) => b.fta_score - a.fta_score)
-    .map(({ file_name, halstead, cyclo, line_count, fta_score, assessment }) => {
-      const { difficulty, effort, time, bugs } = halstead;
+    .map(({file_name, halstead, cyclo, line_count, fta_score, assessment}) => {
+      const {difficulty, effort, time, bugs} = halstead;
       const r = (n: number, pad: number) => Math.round(n).toString().padStart(pad, ' ');
-      return `| ${r(difficulty, 3)} | ${r(effort, 5)} | ${r(time, 5)} | ${r(bugs, 3)} | ${r(cyclo, 3)} | ${r(line_count, 3)} | ${r(fta_score, 5)} | ${padMiddle(assessment, longestAssessment)} | ${file_name.padEnd(longestFileName)} |`;
+      const d = r(difficulty, 3);
+      const e = r(effort, 5);
+      const t = r(time, 5);
+      const b = r(bugs, 3);
+      const c = r(cyclo, 3);
+      const lc = r(line_count, 3);
+      const score = r(fta_score, 5);
+      const a = padMiddle(assessment, longestAssessment);
+      const fn = padMiddle(file_name, longestFileName);
+      return `| ${d} | ${e} | ${t} | ${b} | ${c} | ${lc} | ${score} | ${a} | ${fn} |`;
     });
 
   return `${header}\n${rows.join('\n')}`;

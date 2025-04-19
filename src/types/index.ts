@@ -1,9 +1,9 @@
 // src/types/index.ts
 // src/types/projectInfoCollector.ts
-export { ProjectInfo } from './projectInfo';
-export { Tsconfig } from './tsconfig';
-export { TodoItem } from './todo';
-export { FtaMetrics } from './metrics';
+export {ProjectInfo} from './projectInfo';
+export {Tsconfig} from './tsconfig';
+export {TodoItem} from './todo';
+export {FtaMetrics} from './metrics';
 
 export interface FileNode {
   name: string;

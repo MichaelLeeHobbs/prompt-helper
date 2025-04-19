@@ -1,10 +1,10 @@
 // src/collectors/todoCollector.ts
 import * as fs from 'fs';
 import * as path from 'path';
-import { ProjectInfo, TodoItem } from '../types'; // Matches lines like: "// TO DO: something" or "// FIX ME - details" - Leave spaces breaking words to avoid IDE linter trigger
+import {ProjectInfo, TodoItem} from '../types';
 
 // Matches lines like: "// TO DO: something" or "// FIX ME - details" - Leave spaces breaking words to avoid IDE linter trigger
-const TODO_REGEX = /\/\/\s*(TODO|FIXME)\s*[:\-]?\s*(.*)$/;
+const TODO_REGEX = /\/\/\s*(TODO|FIXME)\s*[:-]?\s*(.*)$/;
 
 /**
  * Recursively finds code files with .ts/.tsx/.js/.jsx extensions.

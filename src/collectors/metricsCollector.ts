@@ -10,9 +10,9 @@ import {FtaMetrics, ProjectInfo} from '../types';
  */
 export function collectMetrics(baseDir: string, projectInfo: ProjectInfo): void {
   // `runFta` is a synchronous call that returns a JSON string of FtaMetrics[]
-  const results: FtaMetrics[] = JSON.parse(runFta(baseDir, { json: true }));
+  const results: FtaMetrics[] = JSON.parse(runFta(baseDir, {json: true}));
 
-  projectInfo.metrics = results.map(({ file_name, ...rest }) => ({
+  projectInfo.metrics = results.map(({file_name, ...rest}) => ({
     ...rest,
     file_name: file_name.replace(/\\/g, '/'), // Normalize path to POSIX-style
   }));

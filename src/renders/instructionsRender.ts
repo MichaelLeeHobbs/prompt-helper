@@ -1,7 +1,7 @@
 // src/renders/instructionsRender.ts
-import { ProjectInfo } from '../types';
-import { metricsRender } from './metricsRender';
-import { mdCodeBlockWrapper } from '../libs/mdCodeBlockWrapper';
+import {ProjectInfo} from '../types';
+import {metricsRender} from './metricsRender';
+import {mdCodeBlockWrapper} from '../libs/mdCodeBlockWrapper';
 
 const SECTION = '\n---\n';
 

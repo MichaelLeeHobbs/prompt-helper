@@ -4,14 +4,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { getOptions } from './options';
-import { createLogger } from './logger';
-import { ProjectInfo } from './types';
-import { collectProjectInfo } from './collectors/projectInfoCollector';
-import { collectFileTree } from './collectors/fileStructureCollector';
-import { fileTreeRender } from './renders/fileTreeRender';
-import { renderProjectInfo } from './renders/projectInfoRenderer';
-import { appendPromptInstructions } from './renders/instructionsRender';
+import {getOptions} from './options';
+import {createLogger} from './logger';
+import {ProjectInfo} from './types';
+import {collectProjectInfo} from './collectors/projectInfoCollector';
+import {collectFileTree} from './collectors/fileStructureCollector';
+import {fileTreeRender} from './renders/fileTreeRender';
+import {renderProjectInfo} from './renders/projectInfoRenderer';
+import {appendPromptInstructions} from './renders/instructionsRender';
 
 const options = getOptions();
 const baseDir = path.resolve(options.dir);

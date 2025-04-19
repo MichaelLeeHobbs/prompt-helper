@@ -19,7 +19,7 @@ export function addHeader(absolutePath: string, relativePath: string): void {
     const data = fs.readFileSync(absolutePath, 'utf8');
 
     // Remove any existing exact match of the header
-    let lines = data.split('\n').filter(line => line.trim() !== expectedHeader);
+    const lines = data.split('\n').filter(line => line.trim() !== expectedHeader);
 
     const firstLine = lines[0]?.trim() ?? '';
     const insertIndex = firstLine.startsWith('#!') ? 1 : 0;

@@ -73,7 +73,7 @@ export function collectCode(baseDir: string, projectInfo: ProjectInfo, codePaths
     return;
   }
 
-  const snippets: { file: string; code: string }[] = [];
+  const snippets: {file: string; code: string}[] = [];
 
   for (const cp of codePaths) {
     let resolvedPath: string | undefined;
@@ -112,7 +112,7 @@ export function collectCode(baseDir: string, projectInfo: ProjectInfo, codePaths
         throw new Error(`Error reading code file "${filePath}": ${err}`);
       }
 
-      snippets.push({ file: rel, code });
+      snippets.push({file: rel, code});
     }
   }
 

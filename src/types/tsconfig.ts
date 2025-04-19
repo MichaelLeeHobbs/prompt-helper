@@ -8,7 +8,7 @@ export interface Tsconfig {
   include?: string[];
   exclude?: string[];
   files?: string[];
-  references?: { path: string }[];
+  references?: {path: string}[];
 
   [key: string]: unknown;
 }

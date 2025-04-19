@@ -1,5 +1,5 @@
 // src/renders/fileTreeRender.ts
-import { FileNode, ProjectInfo } from '../types';
+import {FileNode, ProjectInfo} from '../types';
 import path from 'path';
 
 function renderFileTreeHelper(nodes: FileNode[], log: (message: string, isError?: boolean) => void, prefix: string): void {
@@ -32,7 +32,7 @@ function renderFileTreeHelper(nodes: FileNode[], log: (message: string, isError?
  * @param projectInfo - The project information containing the file tree and logger.
  */
 export function fileTreeRender(projectInfo: ProjectInfo): void {
-  const { tree: nodes, logger: log } = projectInfo;
+  const {tree: nodes, logger: log} = projectInfo;
   log('\n## Directory Structure:\n');
   log('```markdown');
   log(`${path.basename(projectInfo.baseDir)}/`);

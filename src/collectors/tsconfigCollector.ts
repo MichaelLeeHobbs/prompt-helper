@@ -30,7 +30,7 @@ function collectTsconfigInfo(tsconfigPath: string, visitedConfigs = new Set<stri
     return {};
   }
 
-  let mergedConfig: Tsconfig = { ...tsconfig };
+  let mergedConfig: Tsconfig = {...tsconfig};
 
   // Handle "extends"
   if (tsconfig.extends) {

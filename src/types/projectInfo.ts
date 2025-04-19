@@ -41,7 +41,7 @@ export interface ProjectInfo {
   usesJenkins?: boolean;
 
   // Analysis
-  codeSnippets?: { file: string; code: string }[];
+  codeSnippets?: {file: string; code: string}[];
   todos?: TodoItem[];
   metrics?: FtaMetrics[];
   dependencyGraph?: Record<string, string[]>;

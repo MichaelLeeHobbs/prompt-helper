@@ -2,9 +2,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { FileNode } from '../types';
-import { getLocalDependencies } from './dependenciesCollector';
-import { addHeader, hasCorrectHeader } from '../modules/headers';
+import {FileNode} from '../types';
+import {getLocalDependencies} from './dependenciesCollector';
+import {addHeader, hasCorrectHeader} from '../modules/headers';
+import {standardizeError} from '../libs/standardizeError';
 
 const CHECK_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.css']);
 const ALLOWED_DIRECTORIES = new Set(['public', 'src']);
@@ -21,13 +22,14 @@ export function collectFileTree(dir: string, baseDir: string): FileNode[] {
 
   try {
     items = fs.readdirSync(dir);
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const error = standardizeError(err);
     return [
       {
         name: path.basename(dir),
         path: path.relative(baseDir, dir).replace(/\\/g, '/'),
         isDirectory: false,
-        error: err.message,
+        error: error.message,
       },
     ];
   }
@@ -44,12 +46,13 @@ export function collectFileTree(dir: string, baseDir: string): FileNode[] {
     let stat: fs.Stats;
     try {
       stat = fs.statSync(absolutePath);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const error = standardizeError(err);
       nodes.push({
         name: item,
         path: relativePath,
         isDirectory: false,
-        error: err.message,
+        error: error.message,
       });
       return nodes;
     }
