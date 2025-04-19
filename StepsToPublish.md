@@ -8,7 +8,7 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
 2. **Authenticated:** Login to npm from the command line:
 
    ```bash
-   npm login
+   pnpm login
    ```
 
 ## Steps to Publish
@@ -34,25 +34,25 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
 4. **Version Update:**
 
    ```bash
-   npm version [patch | minor | major]
+   pnpm version [patch | minor | major]
    ```
 
    Example:
 
    ```bash
-   npm version patch
+   pnpm version patch
    ```
 
 5. **Publish the Package:**
 
    ```bash
-   npm publish
+   pnpm publish
    ```
 
    Use the `--access public` flag if it’s the first time publishing a scoped package:
 
    ```bash
-   npm publish --access public
+   pnpm publish --access public
    ```
 
 6. **Verify the Publish:**
@@ -60,7 +60,7 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
    Check the npm registry:
 
    ```bash
-   npm view prompt-helper
+   pnpm view prompt-helper
    ```
 
 ## Post-Publish Checklist
