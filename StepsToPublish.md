@@ -72,11 +72,6 @@ Follow these steps to publish your package to [npm](https://www.npmjs.com/):
   npm install -g prompt-helper
   ```
 
-- Create a Git tag and push changes:
-  ```bash
-  git tag vX.Y.Z
-  ```
-
 - Push the changes and tags:
   ```bash
   git add .

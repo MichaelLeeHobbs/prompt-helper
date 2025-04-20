@@ -1,7 +1,16 @@
 {
   "name": "prompt-helper",
   "version": "2.0.1",
-  "description": "",
+  "description": "A CLI tool to help you create and manage prompts for AI models.",
+  "author": "Michael L. Hobbs",
+  "homepage": "https://github.com/MichaelLeeHobbs/prompt-helper/#README.md",
+  "repository": "github:MichaelLeeHobbs/prompt-helper",
+  "bugs": {
+    "url": "https://github.com/MichaelLeeHobbs/prompt-helper/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "bin": {
     "prompt-helper": "dist/index.js",
     "ph": "dist/index.js"
@@ -10,6 +19,7 @@
     "/dist",
     "/promptHelper",
     "/README.md",
+    "/example.md",
     "/LICENSE"
   ],
   "scripts": {
@@ -29,8 +39,7 @@
     "prompt",
     "javascript"
   ],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "commander": "^13.1.0",
     "fta-cli": "^2.0.1",
