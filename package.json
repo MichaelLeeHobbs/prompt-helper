@@ -2,11 +2,18 @@
   "name": "prompt-helper",
   "version": "2.0.0",
   "description": "",
-  "main": "src/index.ts",
   "bin": {
-    "prompt-helper": "dist/src/index.js"
+    "prompt-helper": "dist/index.js",
+    "ph": "dist/index.js"
   },
+  "files": [
+    "/dist",
+    "/promptHelper",
+    "/README.md",
+    "/LICENSE"
+  ],
   "scripts": {
+    "prepare": "pnpm run build",
     "test": "jest",
     "build": "tsc",
     "start": "ts-node src/index.ts",
@@ -41,10 +48,5 @@
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript-eslint": "^8.18.1"
-  },
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE"
-  ]
+  }
 }
