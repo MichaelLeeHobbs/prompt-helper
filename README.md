@@ -61,19 +61,19 @@ pnpm prompt-helper         # pnpm
 
 ## Commands
 
-| Command                  | Description                                                                                                        |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `prompt-helper`          | Scan current directory and generate `promptHelper.md`.                                                             |
-| `-d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).                                        |
-| `-o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                                                           |
-| `-s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                                                       |
-| `-c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. Can be used multiple times. |
-| `-i, --ignore <pattern>` | Glob pattern of files/directories to exclude from `--code` snippets. Can be used multiple times.                   |
-| `--todos`                | Scan codebase for `TODO:` and `FIXME:` comments.                                                                   |
-| `--complexity`           | Analyze complexity metrics (Halstead, cyclomatic, bugs, time, effort).                                             |
-| `--dependency-graph`     | Collect and output the full dependency graph and unused file list.                                                 |
-| `--json`                 | Also write a `promptHelper.json` alongside the markdown summary.                                                   |
-| `--help`                 | Display help and all available options.                                                                            |
+| Command                  | Description                                                                                                                                               |
+|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `prompt-helper`          | Scan current directory and generate `promptHelper.md`.                                                                                                    |
+| `-d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).                                                                               |
+| `-o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                                                                                                  |
+| `-s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                                                                                              |
+| `-c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. Can be used multiple times.                                        |
+| `-i, --ignore <pattern>` | Glob pattern of files/directories to exclude from `--code` snippets. Can be used multiple times. For recursive matching, use `**` (e.g., `**/*.test.ts`). |
+| `--todos`                | Scan codebase for `TODO:` and `FIXME:` comments.                                                                                                          |
+| `--complexity`           | Analyze complexity metrics (Halstead, cyclomatic, bugs, time, effort).                                                                                    |
+| `--dependency-graph`     | Collect and output the full dependency graph and unused file list.                                                                                        |
+| `--json`                 | Also write a `promptHelper.json` alongside the markdown summary.                                                                                          |
+| `--help`                 | Display help and all available options.                                                                                                                   |
 
 ## Example Usage
 
@@ -88,7 +88,10 @@ prompt-helper --dir ./my-app --out custom.md
 prompt-helper --style ./promptHelper/style.md
 
 # Include code snippets from src, but ignore test files and a specific utility
-prompt-helper --code src/entry.ts --code src/utils/ --ignore "*.test.ts" --ignore "src/utils/old-util.js"
+prompt-helper --code src/entry.ts --code src/utils/ --ignore "**/*.test.ts" --ignore "src/utils/old-util.js"
+
+# Ignore a specific directory recursively
+prompt-helper --code . --ignore "**/node_modules/**" --ignore "**/dist/**"
 
 # Include TODO comments and complexity analysis
 prompt-helper --todos --complexity
