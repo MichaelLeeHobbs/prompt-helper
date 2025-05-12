@@ -61,18 +61,19 @@ pnpm prompt-helper         # pnpm
 
 ## Commands
 
-| Command                  | Description                                                                            |
-|--------------------------|----------------------------------------------------------------------------------------|
-| `prompt-helper`          | Scan current directory and generate `promptHelper.md`.                                 |
-| `-d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).            |
-| `-o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                               |
-| `-s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                           |
-| `-c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. |
-| `--todos`                | Scan codebase for `TODO:` and `FIXME:` comments.                                       |
-| `--complexity`           | Analyze complexity metrics (Halstead, cyclomatic, bugs, time, effort).                 |
-| `--dependency-graph`     | Collect and output the full dependency graph and unused file list.                     |
-| `--json`                 | Also write a `promptHelper.json` alongside the markdown summary.                       |
-| `--help`                 | Display help and all available options.                                                |
+| Command                  | Description                                                                                                        |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------|
+| `prompt-helper`          | Scan current directory and generate `promptHelper.md`.                                                             |
+| `-d, --dir <path>`       | Specify a different base directory to scan (defaults to current directory).                                        |
+| `-o, --out <file>`       | Specify output filename (defaults to `promptHelper.md`).                                                           |
+| `-s, --style <style.md>` | Include a `style.md` file to inject a **## Style:** section.                                                       |
+| `-c, --code <file/dir>`  | Include a specific code file or all files in a directory under a **## Code:** section. Can be used multiple times. |
+| `-i, --ignore <pattern>` | Glob pattern of files/directories to exclude from `--code` snippets. Can be used multiple times.                   |
+| `--todos`                | Scan codebase for `TODO:` and `FIXME:` comments.                                                                   |
+| `--complexity`           | Analyze complexity metrics (Halstead, cyclomatic, bugs, time, effort).                                             |
+| `--dependency-graph`     | Collect and output the full dependency graph and unused file list.                                                 |
+| `--json`                 | Also write a `promptHelper.json` alongside the markdown summary.                                                   |
+| `--help`                 | Display help and all available options.                                                                            |
 
 ## Example Usage
 
@@ -86,8 +87,8 @@ prompt-helper --dir ./my-app --out custom.md
 # Inject style guide
 prompt-helper --style ./promptHelper/style.md
 
-# Include code snippets
-prompt-helper --code src/entry.ts --code src/utils/
+# Include code snippets from src, but ignore test files and a specific utility
+prompt-helper --code src/entry.ts --code src/utils/ --ignore "*.test.ts" --ignore "src/utils/old-util.js"
 
 # Include TODO comments and complexity analysis
 prompt-helper --todos --complexity
@@ -123,13 +124,21 @@ See [`example.md`](example.md) for a sample output.
     - `--dependency-graph` collection and unused file detection
     - `--json` output for machine-friendly workflows
 
+### v2.1.0
+
+- **Feature:** Added `--ignore <pattern>` CLI option to exclude files or glob
+  patterns from the code snippets collected by `--code`. This allows for more
+  fine-grained control over what code is included in the output.
+- Dependency: Added `micromatch` for glob pattern matching.
+
 ---
 
 ## Planned Features
 
 - Full test suite with coverage reporting.
 - Expanded support for non‑JS/TS files (e.g., Python, Go).
-- Include/exclude globs for fine‑grained control.
+- ~~Include/exclude globs for fine‑grained control.~~ (Partially addressed with
+  `--ignore`. Further include patterns could be added.)
 - Plugin system for custom metadata collectors.
 
 ---
@@ -184,3 +193,5 @@ details.
 - Inspired by common project analysis tools.
 - Built with TypeScript, Node.js, and modern best practices.
 - This was Vibecoded with ChatGPT.
+
+

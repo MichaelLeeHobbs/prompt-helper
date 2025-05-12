@@ -20,6 +20,7 @@ export interface CollectProjectInfoOptions {
   projectInfo: ProjectInfo;
   stylePath: string | undefined;
   codePaths: string[] | undefined;
+  ignorePatterns: string[] | undefined; // Added ignorePatterns
   scanTodos: boolean | undefined;
   scanMetrics: boolean | undefined;
   graphDeps: boolean | undefined;
@@ -35,6 +36,7 @@ export function collectProjectInfo({
   projectInfo,
   stylePath,
   codePaths = [],
+  ignorePatterns = [], // Added ignorePatterns
   scanTodos = false,
   scanMetrics = false,
   graphDeps = false,
@@ -44,7 +46,7 @@ export function collectProjectInfo({
   collectTsconfig(baseDir, projectInfo);
   collectTools(baseDir, projectInfo);
   collectStyle(baseDir, projectInfo, stylePath);
-  collectCode(baseDir, projectInfo, codePaths);
+  collectCode(baseDir, projectInfo, codePaths, ignorePatterns); // Pass ignorePatterns to collectCode
 
   if (scanTodos) {
     collectTodos(baseDir, projectInfo);

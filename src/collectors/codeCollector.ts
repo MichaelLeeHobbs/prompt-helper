@@ -2,6 +2,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import * as micromatch from 'micromatch'; // Import micromatch
 import {ProjectInfo} from '../types';
 
 /**
@@ -62,18 +63,27 @@ function findAllFiles(dir: string, results: string[] = []): string[] {
 }
 
 /**
- * Collects code snippets from user-specified file or directory paths.
+ * Collects code snippets from user-specified file or directory paths,
+ * respecting ignore patterns.
  *
  * @param baseDir - Root directory used for resolving relative paths.
  * @param projectInfo - The project info object to populate with code snippets.
  * @param codePaths - A list of file or directory names/paths to collect code from.
+ * @param ignorePatterns - A list of glob patterns to exclude files.
  */
-export function collectCode(baseDir: string, projectInfo: ProjectInfo, codePaths: string[]): void {
+export function collectCode(
+  baseDir: string,
+  projectInfo: ProjectInfo,
+  codePaths: string[],
+  ignorePatterns: string[] // Added ignorePatterns parameter
+): void {
   if (codePaths.length === 0) {
     return;
   }
 
   const snippets: {file: string; code: string}[] = [];
+  // Ensure ignorePatterns are valid and non-empty for micromatch
+  const validIgnorePatterns = ignorePatterns.filter(p => p && p.trim() !== '');
 
   for (const cp of codePaths) {
     let resolvedPath: string | undefined;
@@ -100,7 +110,17 @@ export function collectCode(baseDir: string, projectInfo: ProjectInfo, codePaths
     }
 
     const stat = fs.statSync(resolvedPath);
-    const filesToRead = stat.isDirectory() ? findAllFiles(resolvedPath) : [resolvedPath];
+    let filesToRead = stat.isDirectory() ? findAllFiles(resolvedPath) : [resolvedPath];
+
+    // Filter files based on ignore patterns
+    if (validIgnorePatterns.length > 0) {
+      filesToRead = filesToRead.filter(filePath => {
+        const relativeFilePath = path.relative(baseDir, filePath).replace(/\\/g, '/');
+        // micromatch.isMatch returns true if the path matches ANY of the patterns.
+        // We want to exclude if it matches, so we negate the result.
+        return !micromatch.isMatch(relativeFilePath, validIgnorePatterns);
+      });
+    }
 
     for (const filePath of filesToRead) {
       const rel = path.relative(baseDir, filePath).replace(/\\/g, '/');

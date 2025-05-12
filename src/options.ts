@@ -1,5 +1,7 @@
 // src/options.ts
 import {Command} from 'commander';
+import {getPackageVersion} from './libs/getPackageVersion';
+
 
 /**
  * Shape of CLI options parsed from flags.
@@ -9,13 +11,14 @@ export interface Options {
   out: string;
   style?: string;
   code: string[];
+  ignore: string[];
   todos?: boolean;
   complexity?: boolean;
   dependencyGraph?: boolean;
   json?: boolean;
 }
 
-function collectCodePath(value: string, previous: string[]): string[] {
+function collectPathArray(value: string, previous: string[]): string[] {
   return previous.concat([value]);
 }
 
@@ -26,15 +29,17 @@ function collectCodePath(value: string, previous: string[]): string[] {
  */
 export function getOptions(): Options {
   const program = new Command();
+  const projectVersion = getPackageVersion();
 
   program
     .name('prompt-helper')
     .description('Generate a promptHelper markdown summary of your project')
-    .version('1.0.0')
+    .version(projectVersion)
     .option('-d, --dir <path>', 'base directory to scan', process.cwd())
     .option('-o, --out <file>', 'output markdown filename', 'promptHelper.md')
     .option('-s, --style <path>', 'path to style markdown file')
-    .option('-c, --code <path>', 'path to code file to include', collectCodePath, [])
+    .option('-c, --code <path>', 'path to code file or directory to include', collectPathArray, [])
+    .option('-i, --ignore <pattern>', 'glob pattern of files/directories to ignore from --code', collectPathArray, [])
     .option('--todos', 'scan for TODO and FIXME comments')
     .option('--complexity', 'append complexity & metrics report')
     .option('--dependency-graph', 'include a JSON dependency graph')

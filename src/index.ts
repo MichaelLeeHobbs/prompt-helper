@@ -42,6 +42,7 @@ function main(): void {
     projectInfo,
     stylePath: options.style,
     codePaths: options.code,
+    ignorePatterns: options.ignore, // Pass ignore options
     scanTodos: options.todos,
     scanMetrics: options.complexity,
     graphDeps: options.dependencyGraph,

@@ -1,6 +1,6 @@
 {
   "name": "prompt-helper",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A CLI tool to help you create and manage prompts for AI models.",
   "author": "Michael L. Hobbs",
   "homepage": "https://github.com/MichaelLeeHobbs/prompt-helper/#README.md",
@@ -44,17 +44,20 @@
     "commander": "^13.1.0",
     "fta-cli": "^2.0.1",
     "jsonc-parser": "^3.3.1",
+    "micromatch": "^4.0.8",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@types/jest": "^29.5.14",
+    "@types/micromatch": "^4.0.9",
     "@types/node": "^22.10.2",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
     "prettier": "^3.4.2",
+    "prompt-helper": "^2.0.1",
     "ts-node": "^10.9.2",
     "typescript-eslint": "^8.18.1"
   }
