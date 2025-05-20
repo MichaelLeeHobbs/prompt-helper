@@ -118,7 +118,7 @@ export function collectCode(
         const relativeFilePath = path.relative(baseDir, filePath).replace(/\\/g, '/');
         // micromatch.isMatch returns true if the path matches ANY of the patterns.
         // We want to exclude if it matches, so we negate the result.
-        return !micromatch.isMatch(relativeFilePath, validIgnorePatterns);
+        return !micromatch.isMatch(relativeFilePath, validIgnorePatterns, {dot: true});
       });
     }
 

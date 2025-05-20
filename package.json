@@ -1,6 +1,6 @@
 {
   "name": "prompt-helper",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A CLI tool to help you create and manage prompts for AI models.",
   "author": "Michael L. Hobbs",
   "homepage": "https://github.com/MichaelLeeHobbs/prompt-helper/#README.md",
